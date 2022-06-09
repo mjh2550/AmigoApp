@@ -5,10 +5,10 @@
 - 더 편리한 안심 등/하교(원)과 교육기관 간 원할한 소통이 가능하고 편리한 성적 및 오답 분석이 가능한 시스템 개발
 
 ## 개발 팀원
-* 문지홍 , 문호환
+* 문지홍(앱, 서버) , 문호환(서버)
 
 ## 개발 환경
-* Spring ,Spring-boot,thymeleaf , MyBatis, OracleDB
+* Android Studio , Kotlin
 
 ## 개발 화면
 * 카카오 오븐
