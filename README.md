@@ -1,4 +1,3 @@
-# AmigoApp
 # 학업 관리 시스템 AmigoApp(아미고 앱) - Android
 2022.06.08 ~
 
