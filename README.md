@@ -11,7 +11,7 @@
 ## 개발 환경
 * Spring ,Spring-boot,thymeleaf , MyBatis, OracleDB
 
-## 개발화면
+## 개발 화면
 * 카카오 오븐
 https://ovenapp.io/project/8VLloFfY8LWY3XB2WGvSyxI9nuTWraeJ#XJcq9l
 
