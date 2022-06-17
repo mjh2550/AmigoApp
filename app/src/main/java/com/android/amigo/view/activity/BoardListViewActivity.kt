@@ -1,4 +1,4 @@
-package com.android.amigo.ui.activity
+package com.android.amigo.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
