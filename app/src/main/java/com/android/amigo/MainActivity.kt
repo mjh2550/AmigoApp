@@ -16,10 +16,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var BASE_URL = "http://192.168.3.29:8090"
+        retrofitRequest("192.168.219.105")
+    }
+
+    private fun retrofitRequest(myIp: String) {
+
+        val baseUrl = "http://$myIp:8090"
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -27,21 +32,28 @@ class MainActivity : AppCompatActivity() {
 
         val call = service1.getPosts("getAllList.do")
 
-         call.enqueue(object : Callback<TestVO>{
-             override fun onResponse(call: Call<TestVO>, response: Response<TestVO>) {
-                 if(response.isSuccessful){
-                     val result  = response.body()
-                     Log.d("Test", "OnRequest Success : $result")
-                 }else{
-                     Log.d("Test", "OnRequest Fail")
-                 }
+        call.enqueue(object : Callback<ArrayList<TestVO>> {
+            override fun onResponse(call: Call<ArrayList<TestVO>>, response: Response<ArrayList<TestVO>>) {
+                if (response.isSuccessful) {
+                    var result = response.body()
 
-             }
+                    if (result != null) {
+                        for(test in result){
+                            Log.d("Test","For : $test")
+                        }
+                    }
 
-             override fun onFailure(call: Call<TestVO>, t: Throwable) {
-                 Log.d("Test", "On Fail : ${t.message}")
-             }
+                    Log.d("Test", "OnRequest Success : $result")
+                } else {
+                    Log.e("Test", "OnRequest Fail")
+                }
 
-         })
+            }
+
+            override fun onFailure(call: Call<ArrayList<TestVO>>, t: Throwable) {
+                Log.d("Test", "On Fail : ${t.message}")
+            }
+
+        })
     }
 }

@@ -9,6 +9,6 @@ import retrofit2.http.Path
 interface RetrofitService {
 
     @GET("mobile/api/{request}")
-    fun getPosts(@Path("request") request: String) : retrofit2.Call<TestVO>
+    fun getPosts(@Path("request") request: String) : retrofit2.Call<ArrayList<TestVO>>
 
 }
