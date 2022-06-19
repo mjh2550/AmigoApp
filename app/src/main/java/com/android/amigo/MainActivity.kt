@@ -17,12 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        retrofitRequest("192.168.219.105","getAllList.do")
+        retrofitRequest(BuildConfig.myIp,"8090","getAllList.do")
     }
 
-    private fun retrofitRequest(myIp: String, request: String) {
-
-        val call = RetrofitManager(myIp).call(request).apply {
+    private fun retrofitRequest(myIp: String,port: String, request: String) {
+        val call = RetrofitManager(myIp,port).call(request).apply {
             enqueue(object : Callback<ArrayList<TestVO>> {
                 override fun onResponse(call: Call<ArrayList<TestVO>>, response: Response<ArrayList<TestVO>>) {
                     if (response.isSuccessful) {

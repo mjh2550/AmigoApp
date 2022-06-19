@@ -5,15 +5,13 @@ import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitManager(myIp : String = "http://localhost:8090") {
+class RetrofitManager(myIp : String = "http://localhost:8090",port : String) {
 
     private var baseUrl : String
 
     init {
-        baseUrl = "http://${myIp}:8090"
+        baseUrl = "http://$myIp:$port"
     }
-
-//   fun buildUrl(myIp : String) { baseUrl = "http://$myIp:8090"}
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
