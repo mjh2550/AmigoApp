@@ -13,14 +13,16 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        /**
+         * 2022.06.21
+         * @author MJH
+         * 스플래시 이미지
+         * 2초뒤 메인화면으로 전환
+         */
         CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
+            delay(2000)
             val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
         }
-
-
-
     }
 }
