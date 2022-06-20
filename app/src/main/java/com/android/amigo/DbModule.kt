@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object DbModule {
 
-    /*fun proviceAppDatabase(
+    /*fun provideAppDatabase(
         @ApplicationContext context: Context
     )*/
 }
