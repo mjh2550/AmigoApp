@@ -18,13 +18,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SettingActivity"
+            android:name=".view.activity.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".view.activity.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".AttendActivity"
+            android:name=".view.activity.AttendActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.BoardListViewActivity"

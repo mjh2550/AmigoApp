@@ -1,9 +1,12 @@
 package com.android.amigo.util
 
+import com.android.amigo.data.board.Board
 import com.android.amigo.data.test.TestVO
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RetrofitManager(myIp : String = "http://localhost:8090",port : String) {
 

@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String" , "myIp" , '"192.168.0.82"'
+        buildConfigField "String" , "myIp" , '"10.1.8.184"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
