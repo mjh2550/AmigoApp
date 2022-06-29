@@ -16,8 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String" , "ip" , '"172.16.110.130"'
-        buildConfigField "String" , "port" , '"8090"'
+//        buildConfigField "String" , "ip" , '"172.16.110.130"'
+//        buildConfigField "String" , "port" , '"8090"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,6 +42,16 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
         kotlinCompilerVersion kotlin_version
+    }
+    flavorDimensions "server"
+    productFlavors {
+        development {
+            dimension "server"
+            manifestPlaceholders = [
+                appWasHost:"172.16.110.130",
+                appWasPort:"8090"
+            ]
+        }
     }
 }
 

@@ -45,6 +45,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+        <!-- 환경 변수 -->
+        <meta-data android:name="APP_WAS_HOST" android:value="${appWasHost}" />
+        <meta-data android:name="APP_WAS_PORT" android:value="${appWasPort}" />
     </application>
 
 </manifest>

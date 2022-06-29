@@ -1,7 +1,7 @@
 package com.android.amigo.util
 
 import android.util.Log
-import com.android.amigo.BuildConfig
+import com.android.amigo.AmigoApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,11 +12,11 @@ import kotlin.collections.ArrayList
 class RetrofitManager() {
 
     private var baseUrl : String = "http://localhost:8090"
-    private val port = BuildConfig.port
-    private val ip = BuildConfig.ip
+    private var ip = AmigoApplication().getMetaDataString("APP_WAS_HOST")
+    private var port = AmigoApplication().getMetaDataString("APP_WAS_PORT")
 
     init {
-        if(ip.isNotEmpty() && port.isNotEmpty()) baseUrl = "http://$ip:$port"
+        if(ip!!.isNotEmpty() && port!!.isNotEmpty()) baseUrl = "http://$ip:$port"
     }
 
     private val retrofit: Retrofit = Retrofit.Builder()
