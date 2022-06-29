@@ -1,19 +1,22 @@
 package com.android.amigo.util
 
-import com.android.amigo.data.board.Board
-import com.android.amigo.data.test.TestVO
+import android.util.Log
+import com.android.amigo.BuildConfig
+import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import kotlin.collections.ArrayList
 
-class RetrofitManager(myIp : String = "http://localhost:8090",port : String) {
+class RetrofitManager() {
 
-    private var baseUrl : String
+    private var baseUrl : String = "http://localhost:8090"
+    private val port = BuildConfig.port
+    private val ip = BuildConfig.ip
 
     init {
-        baseUrl = "http://$myIp:$port"
+        baseUrl = "http://$ip:$port"
     }
 
     private val retrofit: Retrofit = Retrofit.Builder()
@@ -21,11 +24,37 @@ class RetrofitManager(myIp : String = "http://localhost:8090",port : String) {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-//    val service1 = retrofit.create(RetrofitService::class.java)
-
-    fun call(request: String): retrofit2.Call<ArrayList<TestVO>> {
-        return retrofit.create(RetrofitService::class.java).getPosts(request)
+    /**
+     * 2022.06.29
+     * Get
+     * Select All List
+     * 리스트 전체 조회 요청
+     */
+    fun selectAllRequest(request: String) : ArrayList<Any>? {
+        var result = ArrayList<Any>()
+        retrofit.create(RetrofitService::class.java)
+            .getAllList(request)
+            .apply {
+            enqueue(object : Callback<ArrayList<Any>> {
+                override fun onResponse(call: Call<ArrayList<Any>>, response: Response<ArrayList<Any>>) {
+                    if (response.isSuccessful) {
+                        result = response.body()!!
+                        if (result != null) {
+                            for(test in result){
+                                Log.d("Test","For : $test")
+                            }
+                        }
+                        Log.d("Test", "OnRequest Success : $result")
+                    } else {
+                        Log.e("Test", "OnRequest Fail")
+                    }
+                }
+                override fun onFailure(call: Call<ArrayList<Any>>, t: Throwable) {
+                    Log.d("Test", "On Fail : ${t.message}")
+                }
+            })
+        }
+        return result
     }
-//    val call = service1.getPosts("getAllList.do")
 
 }
