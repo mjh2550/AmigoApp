@@ -16,7 +16,7 @@ class RetrofitManager() {
     private val ip = BuildConfig.ip
 
     init {
-        baseUrl = "http://$ip:$port"
+        if(ip.isNotEmpty() && port.isNotEmpty()) baseUrl = "http://$ip:$port"
     }
 
     private val retrofit: Retrofit = Retrofit.Builder()
@@ -29,6 +29,8 @@ class RetrofitManager() {
      * Get
      * Select All List
      * 리스트 전체 조회 요청
+     * @author mjh
+     * @param request
      */
     fun selectAllRequest(request: String) : ArrayList<Any>? {
         var result = ArrayList<Any>()
