@@ -1,6 +1,8 @@
 package com.android.amigo.view.fragment
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.android.amigo.AmigoApplication
 import com.android.amigo.R
-import com.android.amigo.util.RetrofitManager
 
 /**
  * A simple [Fragment] subclass.
@@ -20,6 +22,7 @@ class MainFragment : Fragment() {
 
     lateinit var navController: NavController
     lateinit var btn01 :Button
+    lateinit var aContext : Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +39,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        aContext = requireActivity().applicationContext
         navController = Navigation.findNavController(view)
-        btn01 = view.findViewById(R.id.button01)
-        btn01.setOnClickListener {
-            val retrofitManager = RetrofitManager().selectAllRequest("getAllList.do")
-        }
 
 
     }

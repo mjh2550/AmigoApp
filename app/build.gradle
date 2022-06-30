@@ -48,7 +48,7 @@ android {
         development {
             dimension "server"
             manifestPlaceholders = [
-                appWasHost:"172.16.110.130",
+                appWasHost:"10.1.8.184",
                 appWasPort:"8090"
             ]
         }
