@@ -20,7 +20,6 @@ class AmigoApplication() : Application() {
         return try {
             val applicationInfo = context.packageManager.getApplicationInfo(context.packageName,PackageManager.GET_META_DATA)
             val bundle = applicationInfo?.metaData
-            Log.e("Bundle","${bundle.toString()}")
             if (bundle.isEmpty){
                 return ""
             }else{
@@ -42,7 +41,6 @@ class AmigoApplication() : Application() {
         return try {
             val applicationInfo = context.packageManager.getApplicationInfo(context.packageName,PackageManager.GET_META_DATA)
             val bundle = applicationInfo?.metaData
-            Log.e("Bundle","${bundle.toString()}")
             if (bundle.isEmpty){
                 return -1
             }else{

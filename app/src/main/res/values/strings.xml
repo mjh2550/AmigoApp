@@ -11,4 +11,10 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--UI Text-->
+    <string name="text_ui_main_title">메인 타이틀</string>
+    <string name="text_ui_big_title">큰 타이틀</string>
+    <string name="text_ui_middle_title">중간 타이틀</string>
+    <string name="text_ui_small_title">작은 타이틀</string>
 </resources>

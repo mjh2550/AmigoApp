@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.android.amigo.AmigoApplication
+import androidx.recyclerview.widget.RecyclerView
 import com.android.amigo.R
+import com.android.amigo.view.adapter.MainTinyBoardListViewAdapter
+import java.util.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -23,6 +25,7 @@ class MainFragment : Fragment() {
     lateinit var navController: NavController
     lateinit var btn01 :Button
     lateinit var aContext : Context
+    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +42,21 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        aContext = requireActivity().applicationContext
+        aContext = requireActivity()
         navController = Navigation.findNavController(view)
+        recyclerView = view.findViewById(R.id.list_1)
+
+        val list = ArrayList<String>()
+        list.add("test1")
+        list.add("test2")
+        list.add("test3")
+
+        val adapter = MainTinyBoardListViewAdapter(context = aContext, list = list)
+        recyclerView.adapter = adapter
+
+
+
+//        Log.d("tata",)
 
 
     }

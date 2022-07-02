@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         componentBinding()
 
-        val retrofitManager = RetrofitManager(applicationContext).selectAllRequest("getAllList.do")
+//        val retrofitManager = RetrofitManager(applicationContext).selectAllRequest("getAllList.do")
 
 
     }
