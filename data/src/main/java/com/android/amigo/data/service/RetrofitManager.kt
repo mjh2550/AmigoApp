@@ -1,8 +1,7 @@
-package com.android.amigo.util
+package com.android.amigo.data.service
 
 import android.content.Context
 import android.util.Log
-import com.android.amigo.AmigoApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -10,16 +9,21 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.collections.ArrayList
 
-class RetrofitManager(val context: Context) {
+class RetrofitManager(
+    private val ip : String = "localhost",
+    private val port : Int = 8090,
+    val context: Context,) {
 
-    private var baseUrl : String = "http://localhost:8090"
-    var ip = AmigoApplication().getMetaDataString("APP_WAS_HOST",context)
+    private var baseUrl : String = "http://$ip:$port"
+//    var ip = AmigoApplication().getMetaDataString("APP_WAS_HOST",context)
     //포트는 항상 숫자이므로 Int 로 요청해야 함
-    var port = AmigoApplication().getMetaDataInteger("APP_WAS_PORT",context)
+//    var port = AmigoApplication().getMetaDataInteger("APP_WAS_PORT",context)
 
+/*
     init {
         if(ip!!.isNotEmpty() && port!=-1) baseUrl = "http://$ip:$port"
     }
+*/
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)

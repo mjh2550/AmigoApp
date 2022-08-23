@@ -1,4 +1,4 @@
-package com.android.amigo
+package com.android.amigo.domain.di
 
 import android.content.Context
 import dagger.Module

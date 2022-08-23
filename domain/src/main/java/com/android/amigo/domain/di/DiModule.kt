@@ -1,6 +1,5 @@
-package com.android.amigo
+package com.android.amigo.domain.di
 
-import com.android.amigo.repository.AmigoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,9 +10,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DiModule {
 
-    @Singleton
+    /*@Singleton
     @Provides
-    fun provideAmigoRepository() : AmigoRepository{
+    fun provideAmigoRepository() : AmigoRepository {
         return AmigoRepository()
-    }
+    }*/
 }

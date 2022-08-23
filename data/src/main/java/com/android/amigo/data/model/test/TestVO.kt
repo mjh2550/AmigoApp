@@ -1,4 +1,4 @@
-package com.android.amigo.data.test
+package com.android.amigo.data.model.test
 
 import com.google.gson.annotations.SerializedName
 

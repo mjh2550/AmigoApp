@@ -1,4 +1,4 @@
-package com.android.amigo.data.board
+package com.android.amigo.data.model.board
 
 data class Board(
     val board_idx : Int,
