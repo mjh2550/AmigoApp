@@ -7,14 +7,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.collections.ArrayList
 
 class RetrofitManager(
-    private val ip : String = "localhost",
-    private val port : Int = 8090,
-    val context: Context,) {
+    private val ip: String = "localhost",
+    private val port: Int = 8090,
+    val context: Context,
+) {
 
-    private var baseUrl : String = "http://$ip:$port"
+    private var baseUrl: String = "http://$ip:$port"
 //    var ip = AmigoApplication().getMetaDataString("APP_WAS_HOST",context)
     //포트는 항상 숫자이므로 Int 로 요청해야 함
 //    var port = AmigoApplication().getMetaDataInteger("APP_WAS_PORT",context)
@@ -38,30 +38,33 @@ class RetrofitManager(
      * @author mjh
      * @param request
      */
-    fun selectAllRequest(request: String) : ArrayList<Any>? {
+    fun selectAllRequest(request: String): ArrayList<Any>? {
         var result = ArrayList<Any>()
         retrofit.create(RetrofitService::class.java)
             .getAllList(request)
             .apply {
-            enqueue(object : Callback<ArrayList<Any>> {
-                override fun onResponse(call: Call<ArrayList<Any>>, response: Response<ArrayList<Any>>) {
-                    if (response.isSuccessful) {
-                        result = response.body()!!
-                        if (result != null) {
-                            for(test in result){
-                                Log.d("Test","For : $test")
+                enqueue(object : Callback<ArrayList<Any>> {
+                    override fun onResponse(
+                        call: Call<ArrayList<Any>>,
+                        response: Response<ArrayList<Any>>
+                    ) {
+                        if (response.isSuccessful) {
+                            result = response.body()!!
+                            for (test in result) {
+                                Log.d("Test", "For : $test")
                             }
+                            Log.d("Test", "OnRequest Success : $result")
+                        } else {
+                            Log.e("Test", "OnRequest Fail")
                         }
-                        Log.d("Test", "OnRequest Success : $result")
-                    } else {
-                        Log.e("Test", "OnRequest Fail")
                     }
-                }
-                override fun onFailure(call: Call<ArrayList<Any>>, t: Throwable) {
-                    Log.d("Test", "On Fail : ${t.message}")
-                }
-            })
-        }
+
+                    override fun onFailure(call: Call<ArrayList<Any>>, t: Throwable) {
+                        Log.d("Test", "On Fail : ${t.message}")
+                    }
+                })
+            }
+        Log.d("Test", "Onreturn : $result")
         return result
     }
 
