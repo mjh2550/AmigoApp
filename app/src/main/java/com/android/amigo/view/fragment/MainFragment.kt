@@ -2,18 +2,19 @@ package com.android.amigo.view.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.android.amigo.R
+import com.android.amigo.domain.model.TestData
 import com.android.amigo.view.adapter.MainTinyBoardListViewAdapter
-import java.util.ArrayList
+import com.android.amigo.view.viewmodel.BoardViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -23,9 +24,14 @@ import java.util.ArrayList
 class MainFragment : Fragment() {
 
     lateinit var navController: NavController
-    lateinit var btn01 :Button
-    lateinit var aContext : Context
+    lateinit var btn01: Button
+    lateinit var aContext: Context
     lateinit var recyclerView: RecyclerView
+
+    lateinit var viewModel: BoardViewModel
+
+
+//    private val viewModel by activityViewModels<BoardViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,19 +51,31 @@ class MainFragment : Fragment() {
         aContext = requireActivity()
         navController = Navigation.findNavController(view)
         recyclerView = view.findViewById(R.id.list_1)
+        viewModel = ViewModelProvider(requireActivity())[BoardViewModel::class.java]
+        val testbtn = view.findViewById<Button>(R.id.button)
+        testbtn.setOnClickListener {
+            viewModel.ldata.value?.add(TestData("t", "tv"))
+            println("ok ${viewModel.ldata.value}")
+//            recyclerView.adapter?.notifyItemInserted(viewModel.ldata.value?.size!!)
+        }
 
-        val list = ArrayList<String>()
-        list.add("test1")
-        list.add("test2")
-        list.add("test3")
+        viewModel.load()
 
-        val adapter = MainTinyBoardListViewAdapter(context = aContext, list = list)
+        var resultList = ArrayList<TestData>()
+        resultList.add(TestData("t1", "test1"))
+        resultList.add(TestData("t2", "test2"))
+        resultList.add(TestData("t3", "test2"))
+
+
+        val adapter = MainTinyBoardListViewAdapter(context = aContext, list = resultList)
         recyclerView.adapter = adapter
 
 
+        viewModel.ldata.observe(viewLifecycleOwner) {
+            resultList = it
+            println("observe data ${it.size}")
 
-//        Log.d("tata",)
-
-
+        }
     }
+
 }

@@ -15,11 +15,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-    /*    externalNativeBuild {
-            cmake {
-                cppFlags ""
-            }
-        }*/
+        /*    externalNativeBuild {
+                cmake {
+                    cppFlags ""
+                }
+            }*/
     }
 
     buildTypes {
@@ -58,6 +58,12 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     implementation "androidx.paging:paging-compose:1.0.0-alpha15"
 
+    // Retrofit2
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+    implementation 'tech.thdev:flow-call-adapter-factory:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
