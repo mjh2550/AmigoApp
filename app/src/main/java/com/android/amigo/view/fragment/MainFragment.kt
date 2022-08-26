@@ -29,12 +29,18 @@ class MainFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
 
     lateinit var viewModel: BoardViewModel
+    private var resultList = ArrayList<TestData>()
 
-
-//    private val viewModel by activityViewModels<BoardViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity())[BoardViewModel::class.java]
+        viewModel.load()
+
+//        resultList.add(TestData("t1", "test1"))
+//        resultList.add(TestData("t2", "test2"))
+//        resultList.add(TestData("t3", "test2"))
+
     }
 
     override fun onCreateView(
@@ -47,25 +53,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         aContext = requireActivity()
         navController = Navigation.findNavController(view)
         recyclerView = view.findViewById(R.id.list_1)
-        viewModel = ViewModelProvider(requireActivity())[BoardViewModel::class.java]
-        val testbtn = view.findViewById<Button>(R.id.button)
-        testbtn.setOnClickListener {
-            viewModel.ldata.value?.add(TestData("t", "tv"))
-            println("ok ${viewModel.ldata.value}")
-//            recyclerView.adapter?.notifyItemInserted(viewModel.ldata.value?.size!!)
-        }
-
-        viewModel.load()
-
-        var resultList = ArrayList<TestData>()
-        resultList.add(TestData("t1", "test1"))
-        resultList.add(TestData("t2", "test2"))
-        resultList.add(TestData("t3", "test2"))
-
 
         val adapter = MainTinyBoardListViewAdapter(context = aContext, list = resultList)
         recyclerView.adapter = adapter
@@ -76,6 +66,8 @@ class MainFragment : Fragment() {
             println("observe data ${it.size}")
 
         }
+
+
     }
 
 }
