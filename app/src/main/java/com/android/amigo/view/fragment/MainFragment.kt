@@ -37,9 +37,7 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[BoardViewModel::class.java]
         viewModel.load()
 
-//        resultList.add(TestData("t1", "test1"))
-//        resultList.add(TestData("t2", "test2"))
-//        resultList.add(TestData("t3", "test2"))
+        resultList = viewModel.list
 
     }
 
